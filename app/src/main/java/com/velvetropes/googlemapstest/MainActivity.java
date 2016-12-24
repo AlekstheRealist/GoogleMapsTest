@@ -19,6 +19,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Button mapButton;
     Button satelliteButton;
     Button hybridButton;
+    Button seattleButton;
+    Button newYorkButton;
+    Button dublinButton;
+
+    static final CameraPosition NEWYORK = CameraPosition.builder().target(new LatLng(40.784,-73.9857))
+            .zoom(21)
+            .bearing(0)
+            .tilt(45)
+            .build();
+
+    static final CameraPosition SEATTLE = CameraPosition.builder()
+            .target(new LatLng(47.6204,-122.3491))
+            .zoom(17)
+            .bearing(0)
+            .tilt(45)
+            .build();
+
+    static final CameraPosition DUBLIN = CameraPosition.builder()
+            .target(new LatLng(53.3478,-6.2597))
+            .zoom(17)
+            .bearing(90)
+            .tilt(45)
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapButton = (Button) findViewById(R.id.btnMap);
         satelliteButton = (Button) findViewById(R.id.btnSatellite);
         hybridButton = (Button) findViewById(R.id.btnHybrid);
+        seattleButton = (Button) findViewById(R.id.seattle);
+        newYorkButton = (Button) findViewById(R.id.newyork);
+        dublinButton = (Button) findViewById(R.id.dublin);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +82,33 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        seattleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mapReady) {
+                    flyTo(SEATTLE);
+                }
+            }
+        });
+
+        newYorkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mapReady) {
+                    flyTo(NEWYORK);
+                }
+            }
+        });
+
+        dublinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mapReady) {
+                    flyTo(DUBLIN);
+                }
+            }
+        });
+
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -67,5 +120,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng newYork = new LatLng(40.7484, -73.9857);
         CameraPosition target = CameraPosition.builder().target(newYork).zoom(14).build();
         m_map.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+    }
+
+    private void flyTo(CameraPosition target) {
+        m_map.animateCamera(CameraUpdateFactory.newCameraPosition(target), 10000, null);
     }
 }
