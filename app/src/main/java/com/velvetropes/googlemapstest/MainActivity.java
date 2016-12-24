@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Button mapButton;
     Button satelliteButton;
     Button hybridButton;
+    Button seattleButton;
+    Button newYorkButton;
+    Button dublinButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapButton = (Button) findViewById(R.id.btnMap);
         satelliteButton = (Button) findViewById(R.id.btnSatellite);
         hybridButton = (Button) findViewById(R.id.btnHybrid);
+        seattleButton = (Button) findViewById(R.id.seattle);
+        newYorkButton = (Button) findViewById(R.id.newyork);
+        dublinButton = (Button) findViewById(R.id.dublin);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +58,39 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onClick(View view) {
                 if (mapReady) {
                     m_map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                }
+            }
+        });
+
+        seattleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mapReady) {
+                    LatLng seattle = new LatLng(47.6204, -122.3491);
+                    CameraPosition newTarget = CameraPosition.builder().target(seattle).zoom(14).build();
+                    m_map.moveCamera(CameraUpdateFactory.newCameraPosition(newTarget));
+                }
+            }
+        });
+
+        newYorkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mapReady) {
+                    LatLng newYorkPosition = new LatLng(40.7127, -74.0059);
+                    CameraPosition newTarget = CameraPosition.builder().target(newYorkPosition).zoom(14).build();
+                    m_map.moveCamera(CameraUpdateFactory.newCameraPosition(newTarget));
+                }
+            }
+        });
+
+        dublinButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mapReady) {
+                    LatLng dublinPosition = new LatLng(53.3478, 6.2597);
+                    CameraPosition newTarget = CameraPosition.builder().target(dublinPosition).zoom(14).build();
+                    m_map.moveCamera(CameraUpdateFactory.newCameraPosition(newTarget));
                 }
             }
         });

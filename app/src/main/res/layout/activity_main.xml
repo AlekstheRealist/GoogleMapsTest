@@ -21,14 +21,15 @@
         <!--map:cameraBearing="112.5"-->
         <!--map:cameraTilt="65"-->
         <!--map:cameraZoom="17"/>-->
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true">
+        android:layout_marginTop="22dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,12 +56,40 @@
                 android:id="@+id/btnHybrid"
                 android:layout_weight="1"/>
         </LinearLayout>
-        
+
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="350dp"
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.MapFragment" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seattle"
+                android:id="@+id/seattle"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New York"
+                android:id="@+id/newyork"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dublin"
+                android:id="@+id/dublin"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 </RelativeLayout>
