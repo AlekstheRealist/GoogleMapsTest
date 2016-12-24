@@ -9,6 +9,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -52,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newYorkMarker = new MarkerOptions().position(new LatLng(40.784, -73.9857)).title("New York");
-        seattleMarker = new MarkerOptions().position(new LatLng(47.6204, -122.3491)).title("Seattle");
-        dublinMarker = new MarkerOptions().position(new LatLng(53.3478, -6.2597)).title("Dublin");
+        newYorkMarker = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(new LatLng(40.784, -73.9857)).title("New York");
+        seattleMarker = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(new LatLng(47.6204, -122.3491)).title("Seattle");
+        dublinMarker = new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher)).position(new LatLng(53.3478, -6.2597)).title("Dublin");
 
         mapButton = (Button) findViewById(R.id.btnMap);
         satelliteButton = (Button) findViewById(R.id.btnSatellite);
