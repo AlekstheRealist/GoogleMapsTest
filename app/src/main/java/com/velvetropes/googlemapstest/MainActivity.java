@@ -23,6 +23,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Button newYorkButton;
     Button dublinButton;
 
+    static final CameraPosition NEWYORK = CameraPosition.builder().target(new LatLng(40.784,-73.9857))
+            .zoom(21)
+            .bearing(0)
+            .tilt(45)
+            .build();
+
+    static final CameraPosition SEATTLE = CameraPosition.builder()
+            .target(new LatLng(47.6204,-122.3491))
+            .zoom(17)
+            .bearing(0)
+            .tilt(45)
+            .build();
+
+    static final CameraPosition DUBLIN = CameraPosition.builder()
+            .target(new LatLng(53.3478,-6.2597))
+            .zoom(17)
+            .bearing(90)
+            .tilt(45)
+            .build();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 if (mapReady) {
-                    LatLng seattle = new LatLng(47.6204, -122.3491);
-                    CameraPosition newTarget = CameraPosition.builder().target(seattle).zoom(14).build();
-                    m_map.moveCamera(CameraUpdateFactory.newCameraPosition(newTarget));
+                    flyTo(SEATTLE);
                 }
             }
         });
@@ -77,9 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 if (mapReady) {
-                    LatLng newYorkPosition = new LatLng(40.7127, -74.0059);
-                    CameraPosition newTarget = CameraPosition.builder().target(newYorkPosition).zoom(14).build();
-                    m_map.moveCamera(CameraUpdateFactory.newCameraPosition(newTarget));
+                    flyTo(NEWYORK);
                 }
             }
         });
@@ -88,9 +104,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View view) {
                 if (mapReady) {
-                    LatLng dublinPosition = new LatLng(53.3478, 6.2597);
-                    CameraPosition newTarget = CameraPosition.builder().target(dublinPosition).zoom(14).build();
-                    m_map.moveCamera(CameraUpdateFactory.newCameraPosition(newTarget));
+                    flyTo(DUBLIN);
                 }
             }
         });
@@ -106,5 +120,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LatLng newYork = new LatLng(40.7484, -73.9857);
         CameraPosition target = CameraPosition.builder().target(newYork).zoom(14).build();
         m_map.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+    }
+
+    private void flyTo(CameraPosition target) {
+        m_map.animateCamera(CameraUpdateFactory.newCameraPosition(target), 10000, null);
     }
 }
