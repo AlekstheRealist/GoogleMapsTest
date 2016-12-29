@@ -1,5 +1,6 @@
 package com.velvetropes.googlemapstest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+
     GoogleMap m_map;
     boolean mapReady = false;
     Button mapButton;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     Button seattleButton;
     Button newYorkButton;
     Button dublinButton;
+    Button panoramaButton;
     MarkerOptions newYorkMarker;
     MarkerOptions seattleMarker;
     MarkerOptions dublinMarker;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         seattleButton = (Button) findViewById(R.id.seattle);
         newYorkButton = (Button) findViewById(R.id.newyork);
         dublinButton = (Button) findViewById(R.id.dublin);
+        panoramaButton = (Button) findViewById(R.id.panorama_button);
 
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +125,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        panoramaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, StreetviewPanoramaActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
@@ -137,4 +150,5 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void flyTo(CameraPosition target) {
         m_map.animateCamera(CameraUpdateFactory.newCameraPosition(target), 10000, null);
     }
+
 }
